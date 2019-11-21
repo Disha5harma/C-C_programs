@@ -1,0 +1,87 @@
+#include<conio.h>
+#include<iostream.h>
+struct node
+{	int data;
+	node*next;
+}*start,*temp,*curr;
+void Insert()
+{       int pos;
+	temp=new node();
+	cout<<"\nEnter the element";
+	cin>>temp->data;
+	cout<<"\nenter the position";
+	cin>>pos;
+	temp->next=NULL;
+	if(pos==0)
+	{	start=temp;
+	}
+	else
+	{       curr=start;
+		for(int i=0;i<pos-1;i++)
+			curr=curr->next;
+		temp->next=curr->next;
+		curr->next=temp;
+	}
+}
+void Delete ()
+{       int pos;
+	temp=start;
+	cout<<"\nenter the position of element to be deleted";
+	cin>>pos;
+	if(pos==0)
+	{	curr=start;
+		start=start->next;
+		delete(curr);
+	}
+	else
+	{	for(int i=0;i<pos-1;i++)
+			temp=temp->next;
+		curr=temp->next;
+		temp->next=curr->next;
+		cout<<"\ndeleted element"<<curr->data;
+		delete(curr);
+	}
+}
+void Display()
+{       temp=start;
+	while(temp!=NULL)
+	{       cout<<temp->data<<" ";
+		temp=temp->next;
+	}
+}
+void Reverse()
+{       node*prev,*next;
+	prev=NULL;
+	next=NULL;
+	curr=start;
+	while(curr!=NULL)
+	{
+		next=curr->next;
+		curr->next=prev;
+		prev=curr;
+		curr=next;
+	}
+	start=prev;
+}
+void main()
+{ 	int choice;
+	char ch='y';
+	while(ch=='y'|| ch=='Y')
+	{	cout<<"\nenter your choice:1.Insert\n2.Delete\n3.Display";
+		cin>>choice;
+		switch(choice)
+		{	case 1:Insert();
+				 break;
+			case 2:Delete();
+				 break;
+			case 3:Display();
+				 break;
+			case 4:Reverse();
+				 break;
+		}
+		cout<<"\nDo you want to enter more(y/n)";
+		cin>>ch;
+	}
+}
+
+
