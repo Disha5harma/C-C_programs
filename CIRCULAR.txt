@@ -1,0 +1,153 @@
+#include<iostream.h>
+#include<conio.h>
+#include<stdio.h>
+struct node
+{	int data;
+	node* next;
+}*last,*temp,*p;
+void insert_first(int data)
+{	if(last!=NULL)
+		return;
+	temp=new node;
+	temp->data=data;
+	last=temp;
+	last->next=temp;
+}
+void insert_beg(int data)
+{	if(last==NULL)
+	{	insert_first(data);
+		return;
+	}
+	temp=new node;
+	temp->data=data;
+	temp->next=last->next;
+	last->next=temp;
+}
+void insert_end(int data)
+{	if(last==NULL)
+	{	insert_first(data);
+		return;
+	}
+	temp=new node;
+	temp->data=data;
+	temp->next=last->next;
+	last->next=temp;
+	last=temp;
+}
+void insert_pos(int pos,int data)
+{       int x=0;
+	p=last->next;
+	do
+	{	if(x==pos-1)
+		{	temp=new node;
+			temp->data=data;
+			temp->next=p->next;
+			p->next=temp;
+			if(p==last)
+				last=temp;
+			break;
+
+		}p=p->next;
+		x++;
+	}while(p!=last->next);
+}
+void transverse()
+{	p=last->next;
+
+	do
+	{	cout<<p->data<<"->";
+		p=p->next;
+	}while(p!=last->next);
+}
+void delete_beg()
+{       if(last->next==last)
+	{	last=NULL;
+		return;
+	}
+	p=last->next;
+	last->next=p->next;
+	cout<<p->data<<" is deleted";
+	delete(p);
+}
+void delete_end()
+{       if(last->next==last)
+	{	last=NULL;
+		return;
+	}
+	p=last->next;
+	while(p->next!=last)
+		p=p->next;
+	p->next=last->next;
+	delete(last);
+	last=p;
+}
+void delete_pos(int pos)
+{       int x=0;
+	p=last->next;
+	do
+	{	if(x==pos-1)
+		{       temp=p->next;
+			p->next=temp->next;
+
+			if(temp==last)
+				last=p;
+			cout<<temp->data<<" is deleted";
+			delete(temp);
+			break;
+		}p=p->next;
+		x++;
+	}while(p!=last->next);
+}
+void reverse()
+{	node* prev=NULL;
+	node* next=NULL;
+	temp=last->next;
+
+	do
+	{       next=temp->next;
+		temp->next=prev;
+		prev=temp;
+		temp=next;
+
+	}while(temp!=p);
+	temp->next=prev;
+	last=temp;
+}
+void main()
+{	int choice,data,pos;
+	char ch='y';
+	while(ch=='y'||ch=='Y')
+	{	cout<<"\nEnter the choice\n1.Insert at beginning\n2.Delete from beginning\n3.Delete from end\n4.Delete by postion\n5.Insert at position\n6.Insert at the end\n7.Transverse\n8.Reverse\n";
+		cin>>choice;
+		switch(choice)
+		{	case 1: cout<<"\nEnter the data";
+				cin>>data;
+				insert_beg(data);
+				break;
+			case 2:delete_beg();
+				break;
+			case 3:delete_end();
+				break;
+			case 4: cout<<"\nEnter the position";
+				cin>>pos;
+				delete_pos(pos);
+				break;
+			case 5: cout<<"\nEnter the position";
+				cin>>pos;
+				cout<<"\nEnter the data";
+				cin>>data;
+				insert_pos(pos,data);
+				break;
+			case 6: cout<<"\nEnter the data";
+				cin>>data;
+				insert_end(data);
+				break;
+			case 7: transverse();
+				break;
+			case 8: reverse();
+				break;
+		}
+		cout<<"\Do you want to perform more operations";
+		cin>>ch;
+	}
+}
