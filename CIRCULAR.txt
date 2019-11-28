@@ -120,7 +120,7 @@ void main()
 	{	cout<<"\nEnter the choice\n1.Insert at beginning\n2.Delete from beginning\n3.Delete from end\n4.Delete by postion\n5.Insert at position\n6.Insert at the end\n7.Transverse\n8.Reverse\n";
 		cin>>choice;
 		switch(choice)
-		{	case 1: cout<<"\nEnter the data";
+		{	case 1:cout<<"\nEnter the data";
 				cin>>data;
 				insert_beg(data);
 				break;
