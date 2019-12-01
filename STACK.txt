@@ -1,0 +1,57 @@
+#include<iostream.h>
+#include<conio.h>
+struct node
+{	int data;
+	node* next;
+}*head,*temp,*curr;
+void insert(int data)
+{	temp=new node;
+	temp->data=data;
+	if(head==NULL)
+		head=temp;
+	else
+	{	temp->next=head;
+		head=temp;
+	}
+}
+void Display()
+{       if(head==NULL)
+	{	cout<<"\nStack is empty";
+		return;
+	}
+	curr=head;
+	while(curr!=NULL)
+	{       cout<<curr->data<<"->";
+		curr=curr->next;
+	}
+}
+void Delete()
+{       if(head==NULL)
+	{	cout<<"\nUnderflow condition";
+		return;
+	}
+	curr=head;
+	head=head->next;
+	cout<<curr->data<<" is deleted";
+	delete(curr);
+}
+void main()
+{	int choice,data,pos;
+	char ch='y';
+	while(ch=='y'||ch=='Y')
+	{	cout<<"\nEnter the choice\n1.Insert\n2.Delete \n3.Display";
+		cin>>choice;
+		switch(choice)
+		{	case 1:cout<<"\nEnter the data:";
+				 cin>>data;
+				 insert(data);
+				 break;
+			case 2:Delete();
+				 break;
+			case 3:Display();
+				 break;
+		}
+		cout<<"\Do you want to perform more operations";
+		cin>>ch;
+	}
+}

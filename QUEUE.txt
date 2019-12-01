@@ -1,0 +1,53 @@
+#include<iostream.h>
+#include<conio.h>
+//FIFO
+struct node
+{	int data;
+	node* next;
+}*head,*tail,*temp,*curr;
+void insert(int data)
+{       temp=new node;
+	temp->data=data;
+	if(head==NULL)
+	{	head=tail=temp;
+		return;
+	}
+	tail->next=temp;
+	tail=temp;
+}
+void Delete()
+{	curr=head;
+	head=head->next;
+	cout<<curr->data<<" is deleted";
+	delete(curr);
+}
+void Display()
+{	curr=head;
+	if(curr==NULL)
+		cout<<"Queue is empty";
+	while(curr!=NULL)
+	{	cout<<curr->data<<"->";
+		curr=curr->next;
+	}
+}
+void main()
+{	int choice,data;
+	char ch='y';
+	while(ch=='y'||ch=='Y')
+	{	cout<<"Enter the choice:\n1.Insert\n2.Delete\n3.Display";
+		cin>>choice;
+		switch(choice)
+		{	case 1: cout<<"\nEnter the data";
+				cin>>data;
+				insert(data);
+				break;
+			case 2: Delete();
+				break;
+			case 3: Display();
+				break;
+		}
+		cout<<"\nDo you want to perform more operations";
+		cin>>ch;
+	}
+getch();
+}
