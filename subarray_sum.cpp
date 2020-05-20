@@ -57,7 +57,7 @@ int main() {
 	int t;
     cin>>t;
     while(t--)
-    {   int i,n,ei=0,si=0,sum,flag=0,curr_sum=0;
+    {   int i,n,si=0,sum,flag=0,curr_sum=0;
         cin>>n>>sum;
         vector<int>arr(n);
         for(i=0;i<n;i++)
@@ -67,10 +67,7 @@ int main() {
         for( i=0;i<n;i++)
         {
             curr_sum+=arr[i];
-            // if(curr_sum>sum)
-            // {
-            //     ei=i;
-                while((curr_sum>sum) && (si<ei))
+            while((curr_sum>sum) && (si<i))
                 {
                     curr_sum-=arr[si];
                     si++;
@@ -78,8 +75,8 @@ int main() {
 
 
             if(curr_sum==sum)
-                {   ei=i;
-                    cout<<si+1<<" "<<ei+1<<endl;
+                {
+                    cout<<si+1<<" "<<i+1<<endl;
                     flag=1;
                     break;
                 }
