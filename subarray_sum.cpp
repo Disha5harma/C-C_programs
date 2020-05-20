@@ -44,3 +44,50 @@ int main()
         cout<<output[i]<<" ";
 
 }
+
+
+\\Equal to sum
+
+#include <iostream>
+#include<vector>
+using namespace std;
+
+int main() {
+
+	int t;
+    cin>>t;
+    while(t--)
+    {   int i,n,ei=0,si=0,sum,flag=0,curr_sum=0;
+        cin>>n>>sum;
+        vector<int>arr(n);
+        for(i=0;i<n;i++)
+        {
+            cin>>arr[i];
+        }
+        for( i=0;i<n;i++)
+        {
+            curr_sum+=arr[i];
+            // if(curr_sum>sum)
+            // {
+            //     ei=i;
+                while((curr_sum>sum) && (si<ei))
+                {
+                    curr_sum-=arr[si];
+                    si++;
+                }
+
+
+            if(curr_sum==sum)
+                {   ei=i;
+                    cout<<si+1<<" "<<ei+1<<endl;
+                    flag=1;
+                    break;
+                }
+        }
+        if(flag==0)
+        {
+            cout<<-1<<endl;
+        }
+    }
+	return 0;
+}
