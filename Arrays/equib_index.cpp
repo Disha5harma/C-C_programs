@@ -1,41 +1,39 @@
 #include <iostream>
 using namespace std;
 
+long long a[1000000];
+long long pre[1000000];
 int main() {
-	//code
-	int t;
-	cin>>t;
-	while(t--)
-    {   int n,i;
-        cin>>n;
 
-        int arr[n],sum=0,p1=0,p2=0;
-    	for(i=0;i<n;i++)
-    	    cin>>arr[i];
-    	for(i=0;i<n;i++)
-    	    sum+=arr[i];
+	long long t;
+	cin >> t;
 
-    	if(n==1)
-    	    cout<<1<<endl;
-    	else if(n>2)
-    	{
-    	    i=0;
-    	    p1=0;
-        	p2=sum;
-        	while(i+1<n)
-        	{
-        	    p1+=arr[i];
-        	    p2-=arr[i]-arr[i+1];
-        	    if(p1==p2)
-        	    {   cout<<i+2<<endl;
-        	        break;
-        	    }
-        	    i++;
-        	}
-    	}
-    	else
-    	    cout<<-1<<endl;
+	while(t--){
+	    long long n;
+	    cin >> n;
 
+
+	    long long sum = 0;
+	    for(long long i = 0;i<n;i++){
+	        cin >> a[i];
+	        sum+=a[i];
+	        pre[i] = sum;
+	    }
+
+	    long long sum2 = 0, ans = -1;
+
+	    for(long long i = n-1;i>=0;i--){
+	        sum2 += a[i];
+	        if(sum2 == pre[i]){
+	            ans = i+1;
+	        }
+	    }
+
+
+	    if(ans == 0){
+	        cout << "-1"<< endl;
+	    }
+	    else cout << ans << endl;
 	}
 	return 0;
 }
