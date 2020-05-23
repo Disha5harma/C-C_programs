@@ -34,3 +34,14 @@ int main() {
 
 	return 0;
 }
+
+//Program to rotate the array by given units(r)
+
+void rotate_arr(int arr[n],int n,int r)
+{
+    reverse(arr,arr+r);
+    reverse(arr+r,arr+n);
+    reverse(arr,arr+n);
+
+    return arr;
+}
